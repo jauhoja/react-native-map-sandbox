@@ -1,10 +1,10 @@
 import UIKit
 import React
-import React_RCTAppDelegate
+import ReactNativeNavigation
 import ReactAppDependencyProvider
 
 @main
-class AppDelegate: RCTAppDelegate {
+class AppDelegate: RNNAppDelegate {
   override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     self.moduleName = "GnssAisIght"
     self.dependencyProvider = RCTAppDependencyProvider()
