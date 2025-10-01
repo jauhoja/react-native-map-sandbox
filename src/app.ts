@@ -1,6 +1,7 @@
 import {Navigation} from 'react-native-navigation';
 import App from './components/App';
 import Home from './components/Home';
+import Map from './components/Map';
 
 const start = () => {
   Navigation.events().registerAppLaunchedListener(async () => {
@@ -45,6 +46,24 @@ const start = () => {
                 },
               },
             },
+            {
+              stack: {
+                id: 'SETTINGS_TAB',
+                children: [
+                  {
+                    component: {
+                      id: 'SETTINGS_SCREEN',
+                      name: 'Settings',
+                    },
+                  },
+                ],
+                options: {
+                  bottomTab: {
+                    icon: require('./icons/settings.png'),
+                  },
+                },
+              },
+            },
           ],
         },
       },
@@ -52,7 +71,8 @@ const start = () => {
   });
 };
 
-Navigation.registerComponent('Map', () => App); // Placeholder, React Native template view
+Navigation.registerComponent('Map', () => Map); // Placeholder, React Native template view
 Navigation.registerComponent('Home', () => Home);
+Navigation.registerComponent('Settings', () => App);
 
 export default start;
