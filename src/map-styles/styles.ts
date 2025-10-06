@@ -3,6 +3,7 @@ import {
   GeoJSONSourceSpecification,
   SourceSpecification,
   StyleSpecification,
+  SymbolLayerSpecification,
 } from '@maplibre/maplibre-gl-style-spec';
 import * as defaultMapStyle from '../map-styles/style.json';
 
@@ -32,13 +33,13 @@ export const addPointLayer = (
       'fintraffic-ships': herwoodCenteredShipSource,
       'plain-point': plainPointSource,
     },
-    layers: [...prevStyle.layers, shipLayer, plainPointLayer],
+    layers: [...prevStyle.layers, shipLayer, plainPointLayer, shipTextLayer],
   };
 };
 
 const herwoodCenteredShipSource: GeoJSONSourceSpecification = {
   type: 'geojson',
-  data: 'https://meri.digitraffic.fi/api/ais/v1/locations?radius=100&latitude=61.4481&longitude=23.8521',
+  data: 'https://meri.digitraffic.fi/api/ais/v1/locations?radius=500&latitude=61.4481&longitude=23.8521',
 };
 
 const shipLayer: CircleLayerSpecification = {
@@ -48,6 +49,17 @@ const shipLayer: CircleLayerSpecification = {
   paint: {
     'circle-color': '#0aa',
     'circle-stroke-width': 2,
+  },
+};
+
+const shipTextLayer: SymbolLayerSpecification = {
+  id: 'ships-text',
+  type: 'symbol',
+  source: 'fintraffic-ships',
+  layout: {
+    'text-field': ['get', 'mmsi'],
+    'text-size': 12,
+    'text-offset': [0, 1.5],
   },
 };
 
